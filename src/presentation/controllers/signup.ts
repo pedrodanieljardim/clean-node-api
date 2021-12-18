@@ -1,11 +1,13 @@
-import {SingUpHttpHttpRequest, SingUpHttpResponse} from '../protocols/http';
+import {HttpRequest, HttpResponse, SingUpHttpHttpRequest, SingUpHttpResponse} from '../protocols/http';
 import MissingParamName from '../errors/missing-param-error';
 import {badRequest} from '../helpers/http-helper';
 import MissingParamError from '../errors/missing-param-error';
+import { Controller } from '../protocols/controller';
 
-export default class SignUpController {
-  handle (_httpRequest: SingUpHttpHttpRequest): SingUpHttpResponse {
-    
+export default class SignUpController implements Controller {
+
+  handle (_httpRequest: HttpRequest): HttpResponse {
+
     const requiredFields = ['name', 'email', 'password', 'passwordConfirmation'];
 
     for(const field of requiredFields){
