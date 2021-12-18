@@ -5,7 +5,7 @@ import MissingParamError from '../errors/missing-param-error';
 
 export default class SignUpController {
   handle (_httpRequest: SingUpHttpHttpRequest): SingUpHttpResponse {
-    const requiredFields = ['name', 'email'];
+    const requiredFields = ['name', 'email', 'password'];
 
     for(const field of requiredFields){
       if(!_httpRequest.body[field]){
