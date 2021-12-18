@@ -1,4 +1,5 @@
 import {SingUpHttpHttpRequest, SingUpHttpResponse} from '../protocols/http';
+import MissingParamName from '../errors/missing-param-error';
 
 export default class SignUpController {
   handle (_httpRequest: SingUpHttpHttpRequest): SingUpHttpResponse {
@@ -6,9 +7,9 @@ export default class SignUpController {
     // Validator
     switch(true){
       case !_httpRequest.body.name:
-        return new SingUpHttpResponse(400, new Error('Missing param: name'))
+        return new SingUpHttpResponse(400, new MissingParamName('name'))
       case !_httpRequest.body.email:
-        return new SingUpHttpResponse(400, new Error('Missing param: email'))
+        return new SingUpHttpResponse(400, new MissingParamName('email'))
     }
 
     return new SingUpHttpResponse(200, {createdAt: new Date(), message: "ok!"})
